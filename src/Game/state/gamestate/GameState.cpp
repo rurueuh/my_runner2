@@ -9,13 +9,15 @@
 
 GameState::GameState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::stack<State *>>  states) : State(target, font, states)
 {
-    _player = new Player();
+    _map = new Map();
+    _player = new Player(_map);
 }
 
 GameState::~GameState()
 {
     std::cout << "Ending GameState" << std::endl;
     delete _player;
+    delete _map;
 }
 
 void GameState::checkQuit()
@@ -27,7 +29,12 @@ void GameState::checkQuit()
 void GameState::update(const float &dt, sf::RenderTarget *target)
 {
     this->checkQuit();
-    _player->update(dt);
+
+
+    _player->update(dt, dynamic_cast<sf::RenderWindow *>(target));
+    _map->update(dt);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        _player->jump();
 }
 
 void GameState::onWindowResize(sf::RenderTarget *target)
@@ -37,5 +44,6 @@ void GameState::onWindowResize(sf::RenderTarget *target)
 void GameState::render(sf::RenderTarget *target)
 {
     _player->render(target);
+    _map->render(target);
 }
 
