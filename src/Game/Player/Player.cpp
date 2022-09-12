@@ -7,7 +7,7 @@
 
 #include "Player.hpp"
 
-Player::Player()
+Player::Player(Map *map)
 {
     _texture.loadFromFile("assets/player.png");
     _sprite.setTexture(_texture);
@@ -16,6 +16,7 @@ Player::Player()
 
     _gravity = new Gravity(&_sprite);
     _animation = new Animation(&_sprite);
+    _map = map;
 }
 
 Player::~Player()
@@ -24,9 +25,16 @@ Player::~Player()
     delete _animation;
 }
 
-void Player::update(const float &dt)
+void Player::jump()
 {
-    // _gravity->update(dt);
+    if (_gravity->getGrounded() == true)
+        _gravity->setGravity(Gravity::JUMP);
+}
+
+void Player::update(const float &dt, sf::RenderWindow *window)
+{
+    sf::Vector2f posPlayer = _sprite.getPosition();
+    _gravity->update(dt, _map->getMaxHeight(posPlayer, window));
     _animation->update();
 }
 

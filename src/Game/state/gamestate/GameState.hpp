@@ -10,6 +10,7 @@
 #include "SFML.hpp"
 #include "State.hpp"
 #include "Player.hpp"
+#include "Map.hpp"
 
 class GameState : public State {
     public:
@@ -24,4 +25,5 @@ class GameState : public State {
     protected:
     private:
         Player *_player;
+        Map *_map;
 };
