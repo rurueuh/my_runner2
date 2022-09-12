@@ -15,6 +15,7 @@ GameState::GameState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<s
 GameState::~GameState()
 {
     std::cout << "Ending GameState" << std::endl;
+    delete _player;
 }
 
 void GameState::checkQuit()
