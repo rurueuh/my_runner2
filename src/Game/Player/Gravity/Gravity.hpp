@@ -7,10 +7,7 @@
 
 #pragma once
 
-namespace GRAVITY {
-    const int GRAVITY = 9.81;
-    const int JUMP = 10;
-}
+#include "SFML.hpp"
 
 class Gravity {
     public:
@@ -25,4 +22,7 @@ class Gravity {
     private:
         sf::Sprite *_sprite;
         float _gravity;
+
+        const int JUMP = 10;
+        const int GRAVITY_FORCE = 9.81;
 };

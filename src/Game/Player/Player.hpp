@@ -21,7 +21,7 @@ class Player {
 
     protected:
     private:
-        // Gravity *_gravity;
+        Gravity *_gravity;
         sf::Sprite _sprite;
         sf::Texture _texture;
         
