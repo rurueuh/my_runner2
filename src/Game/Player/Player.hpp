@@ -8,6 +8,7 @@
 #pragma once
 
 #include "SFML.hpp"
+#include "Gravity.hpp"
 
 class Player {
     public:
@@ -19,6 +20,7 @@ class Player {
 
     protected:
     private:
+        Gravity *_gravity;
         sf::Sprite _sprite;
         sf::Texture _texture;
 };
