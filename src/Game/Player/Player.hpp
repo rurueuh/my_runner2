@@ -10,6 +10,7 @@
 #include "SFML.hpp"
 #include "Gravity.hpp"
 
+
 class Player {
     public:
         Player();
@@ -20,7 +21,9 @@ class Player {
 
     protected:
     private:
-        Gravity *_gravity;
+        // Gravity *_gravity;
         sf::Sprite _sprite;
         sf::Texture _texture;
+        
+        const sf::IntRect PLAYER_SPRITE_RECT = {93, 31, 133, 181};
 };
