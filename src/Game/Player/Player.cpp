@@ -13,17 +13,21 @@ Player::Player()
     _sprite.setTexture(_texture);
     _sprite.setTextureRect(PLAYER_SPRITE_RECT);
     _sprite.setPosition(100, 100);
+
     _gravity = new Gravity(&_sprite);
+    _animation = new Animation(&_sprite);
 }
 
 Player::~Player()
 {
     delete _gravity;
+    delete _animation;
 }
 
 void Player::update(const float &dt)
 {
-    _gravity->update(dt);
+    // _gravity->update(dt);
+    _animation->update();
 }
 
 void Player::render(sf::RenderTarget *target)

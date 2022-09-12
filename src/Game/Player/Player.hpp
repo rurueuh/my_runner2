@@ -9,6 +9,7 @@
 
 #include "SFML.hpp"
 #include "Gravity.hpp"
+#include "Animation.hpp"
 
 
 class Player {
@@ -22,6 +23,8 @@ class Player {
     protected:
     private:
         Gravity *_gravity;
+        Animation *_animation;
+
         sf::Sprite _sprite;
         sf::Texture _texture;
         
