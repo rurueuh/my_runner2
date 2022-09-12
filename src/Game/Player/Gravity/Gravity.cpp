@@ -17,20 +17,20 @@ Gravity::~Gravity()
 {
 }
 
-void Gravity::update(const float &dt, int height)
+void Gravity::update(const float &dt, int height1, int height2)
 {
-    if (this->_sprite->getPosition().y < height - this->_sprite->getGlobalBounds().height || (this->isGrounded == true && this->_gravity != 0)) {
+    if (this->_sprite->getPosition().y < height1 - this->_sprite->getGlobalBounds().height
+    &&  this->_sprite->getPosition().y < height2 - this->_sprite->getGlobalBounds().height
+    || (this->isGrounded == true && this->_gravity != 0)) {
         this->_gravity += Gravity::GRAVITY_FORCE * dt;
         this->_sprite->move(0, this->_gravity);
         this->isGrounded = false;
-        std::cout << "not grounded" << std::endl;
     } else {
         if (this->isGrounded == false) {
             this->_gravity = 0;
             this->isGrounded = true;
-            this->_sprite->setPosition(this->_sprite->getPosition().x, height - this->_sprite->getGlobalBounds().height);
+            this->_sprite->setPosition(this->_sprite->getPosition().x, (height1 < height2 ? height1 : height2) - this->_sprite->getGlobalBounds().height);
         }
-        std::cout << "grounded" << std::endl;
     }
 }
 

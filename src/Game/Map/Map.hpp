@@ -12,18 +12,23 @@
 class Map {
     public:
         Map();
-        ~Map();
+        virtual ~Map();
 
-        void update(const float &dt);
+        void update(const float &dt, sf::RenderWindow *window);
         void render(sf::RenderTarget *target);
 
         float getMaxHeight(sf::Vector2f &posPlayer, sf::RenderWindow *window) const;
 
     protected:
+
+        void move(const float &dt, sf::RenderWindow *window);
+
     private:
         std::vector< std::vector< sf::Sprite> > _sprites;
         sf::Texture _texture;
 
         const std::string _texturePath = "assets/ground.png";
         const sf::IntRect _spriteRect = sf::IntRect(243, 18, 78, 77);
+
+        const float moveSpeed = 300.f;
 };

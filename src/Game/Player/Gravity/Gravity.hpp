@@ -14,13 +14,13 @@ class Gravity {
         Gravity(sf::Sprite *sprite);
         ~Gravity();
 
-        void update(const float &dt, int height);
+        void update(const float &dt, int height1 , int height2);
         // void render(sf::RenderTarget *target);
         void setGravity(const float &gravity);
         bool getGrounded() const { return this->isGrounded; }
 
         const static int JUMP = -6;
-        const static int GRAVITY_FORCE = 9.81;
+        const static int GRAVITY_FORCE = 16;
     protected:
     private:
         sf::Sprite *_sprite;

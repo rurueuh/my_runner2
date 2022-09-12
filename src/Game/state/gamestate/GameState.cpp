@@ -32,7 +32,7 @@ void GameState::update(const float &dt, sf::RenderTarget *target)
 
 
     _player->update(dt, dynamic_cast<sf::RenderWindow *>(target));
-    _map->update(dt);
+    _map->update(dt, dynamic_cast<sf::RenderWindow *>(target));
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         _player->jump();
 }
