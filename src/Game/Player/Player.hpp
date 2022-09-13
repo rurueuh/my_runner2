@@ -21,6 +21,8 @@ class Player {
         void update(const float &dt, sf::RenderWindow *window);
         void render(sf::RenderTarget *target);
 
+        bool isPlayerDead() const { return _playerDead; }
+
         void jump();
 
     protected:
@@ -28,6 +30,8 @@ class Player {
         Gravity *_gravity;
         Animation *_animation;
         Map *_map;
+
+        bool _playerDead = false;
 
         sf::Sprite _sprite;
         sf::Texture _texture;

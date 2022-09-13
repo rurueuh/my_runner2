@@ -1,0 +1,31 @@
+/*
+** EPITECH PROJECT, 2022
+** my_runner2
+** File description:
+** DeadState
+*/
+
+#pragma once
+
+#include "SFML.hpp"
+#include "State.hpp"
+
+class DeadState : public State {
+    public:
+        DeadState(sf::RenderWindow *, sf::Font *, std::shared_ptr<std::vector<State *>> );
+        virtual ~DeadState();
+
+        void update(const float &dt, sf::RenderTarget *target);
+        void render(sf::RenderTarget * = nullptr);
+        void onWindowResize(sf::RenderTarget *target) {};
+
+        // void button_action_exit();
+        // void button_action_start();
+
+        void checkQuit();
+    protected:
+    private:
+        Text *_text;
+        // std::pair<Button *, void (LaunchState::*)()> _button;
+        // std::pair<Button *, void (LaunchState::*)()> _button_start;
+};
