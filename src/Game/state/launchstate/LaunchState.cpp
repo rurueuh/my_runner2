@@ -10,7 +10,7 @@
 
 LaunchState::LaunchState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::vector<State *>> *states) : State(target, font, states)
 {
-    this->_text = new Text("Press Space to start", font, sf::Color::White, sf::Vector2f(100, 100), 50);
+    this->_text = new Text("Welcome to my game !", font, sf::Color::White, sf::Vector2f(100, 100), 50);
     this->_button = std::make_pair(new Button(200, 400, 140, 40, "exit", font, 40, sf::Color(100, 100, 100, 255), sf::Color(80, 80, 80, 255), sf::Color(50, 50, 50, 255)), &LaunchState::button_action_exit);
     this->_button_start = std::make_pair(new Button(200, 300, 140, 40, "start", font, 40, sf::Color(100, 100, 100, 255), sf::Color(80, 80, 80, 255), sf::Color(50, 50, 50, 255)), &LaunchState::button_action_start);
 }

@@ -11,3 +11,7 @@ I decide to rework this projet from C and CSFML to C++ and SFML
 random map generate
 
 i push a windows version for try :p
+
+control:
+    - space for quit
+    - up arrow or Z for jump

@@ -40,7 +40,7 @@ void GameState::update(const float &dt, sf::RenderTarget *target)
         this->QuitState();
         this->_states->get()->push_back(new DeadState(this->_target, this->_font, this->_states));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
         _player->jump();
 
     _map->update(dt, dynamic_cast<sf::RenderWindow *>(target));
