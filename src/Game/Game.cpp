@@ -66,7 +66,6 @@ void Game::update()
     this->updateDt();
     this->handleEvent();
     if (!this->_states.get()->empty()){
-        this->_states.get()->back()->update(this->_deltaTime, this->_window);
         for (auto &state : *this->_states.get()) {
             if (state == nullptr)
                 continue;
@@ -75,6 +74,7 @@ void Game::update()
                 sf::sleep(sf::milliseconds(400));
             }
         }
+        this->_states.get()->back()->update(this->_deltaTime, this->_window);
     } else {
         this->_window->close();
     }

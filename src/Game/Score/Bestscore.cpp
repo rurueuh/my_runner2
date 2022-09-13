@@ -31,3 +31,18 @@ void Bestscore::render(sf::RenderTarget *target)
 {
     this->_text->draw(target);
 }
+
+void Bestscore::update()
+{
+    std::string message = "Best score : ";
+    std::fstream file;
+    file.open("assets/score.txt", std::ios::in);
+    std::string line;
+    std::getline(file, line);
+    file.close();
+    if (line != "")
+        message += line;
+    else
+        message += "0";
+    this->_text->setString(message);
+}
