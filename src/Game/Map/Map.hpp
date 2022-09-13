@@ -16,6 +16,7 @@ class Map {
 
         void update(const float &dt, sf::RenderWindow *window);
         void render(sf::RenderTarget *target);
+        int getBlockLengthMostFar();
 
         float getMaxHeight(sf::Vector2f &posPlayer, sf::RenderWindow *window) const;
 
