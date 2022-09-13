@@ -36,6 +36,8 @@ void Player::update(const float &dt, sf::RenderWindow *window)
 {
     sf::Vector2f posPlayer = _sprite.getPosition();
     sf::Vector2f posPlayer2 = _sprite.getPosition() + sf::Vector2f(_sprite.getGlobalBounds().width, 0);
+    if (_gravity->isInBlock(_map->getMaxHeight(posPlayer, window), _map->getMaxHeight(posPlayer2, window), _sprite) == true)
+        std::cout << "in block" << std::endl;
     _gravity->update(dt, _map->getMaxHeight(posPlayer, window), _map->getMaxHeight(posPlayer2, window));
     _animation->update();
 }

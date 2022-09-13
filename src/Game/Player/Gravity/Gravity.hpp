@@ -15,6 +15,7 @@ class Gravity {
         ~Gravity();
 
         void update(const float &dt, int height1 , int height2);
+        bool isInBlock(int height1, int height2, sf::Sprite &sprite);
         // void render(sf::RenderTarget *target);
         void setGravity(const float &gravity);
         bool getGrounded() const { return this->isGrounded; }
