@@ -13,7 +13,7 @@ Player::Player(Map *map)
     _sprite.setTexture(_texture);
     _sprite.setTextureRect(PLAYER_SPRITE_RECT);
     _sprite.setPosition(100, 100);
-    _sprite.setScale(0.5, 0.5);
+    _sprite.setScale(0.7, 0.7);
 
     _gravity = new Gravity(&_sprite);
     _animation = new Animation(&_sprite);

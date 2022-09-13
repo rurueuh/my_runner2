@@ -28,7 +28,6 @@ void Paralax::update(const float &dt, sf::Vector2u size)
 {
     for (int i = 0; i < PARALAX_NB; i++) {
         _paralax[i].sprite.move(-_paralax[i].speed * dt);
-        std::cout << _paralax[i].sprite.getPosition().x << std::endl;
         if (_paralax[i].sprite.getPosition().x > -size.x * 2)
             _paralax[i].sprite.setPosition(1920, 0);
     }
