@@ -48,6 +48,7 @@ void DeadState::update(const float &dt, sf::RenderTarget *target)
         (this->*_button_to_menu.second)();
     if (_button_restart.first->isPressed() == true)
         (this->*_button_restart.second)();
+    _score->update();
 }
 
 void DeadState::render(sf::RenderTarget *target)

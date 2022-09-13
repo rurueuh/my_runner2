@@ -16,6 +16,8 @@ class Bestscore {
 
         void render(sf::RenderTarget *);
 
+        void update();
+
     protected:
     private:
         Text *_text;

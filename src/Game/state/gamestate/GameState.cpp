@@ -36,7 +36,7 @@ void GameState::update(const float &dt, sf::RenderTarget *target)
 
 
     _player->update(dt, dynamic_cast<sf::RenderWindow *>(target));
-    if (_player->isPlayerDead() == true){
+    if (_player->isPlayerDead() == true) {
         this->QuitState();
         this->_states->get()->push_back(new DeadState(this->_target, this->_font, this->_states));
     }
