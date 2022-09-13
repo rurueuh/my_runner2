@@ -12,7 +12,7 @@
 
 class LaunchState : public State {
     public:
-        LaunchState(sf::RenderWindow *, sf::Font *, std::shared_ptr<std::stack<State *>> );
+        LaunchState(sf::RenderWindow *, sf::Font *, std::shared_ptr<std::vector<State *>> );
         virtual ~LaunchState();
 
         void update(const float &dt, sf::RenderTarget *target);

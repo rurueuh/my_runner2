@@ -36,7 +36,7 @@ class Game {
         sf::RenderWindow *_window;
         sf::Event _event;
 
-        std::shared_ptr<std::stack<State *>> _states;
+        std::shared_ptr<std::vector<State *>> _states;
         sf::Font *_font;
 
         // delta time

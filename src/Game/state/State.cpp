@@ -7,7 +7,7 @@
 
 #include "State.hpp"
 
-State::State(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::stack<State *>>  states)
+State::State(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::vector<State *>>  states)
 {
     this->_target = target;
     this->_font = font;

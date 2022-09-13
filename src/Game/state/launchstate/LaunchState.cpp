@@ -8,7 +8,7 @@
 #include "LaunchState.hpp"
 #include "GameState.hpp"
 
-LaunchState::LaunchState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::stack<State *>>  states) : State(target, font, states)
+LaunchState::LaunchState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::vector<State *>>  states) : State(target, font, states)
 {
     this->_text = new Text("Press Space to start", font, sf::Color::White, sf::Vector2f(100, 100), 50);
     this->_button = std::make_pair(new Button(200, 400, 140, 40, "exit", font, 40, sf::Color(100, 100, 100, 255), sf::Color(80, 80, 80, 255), sf::Color(50, 50, 50, 255)), &LaunchState::button_action_exit);
@@ -39,7 +39,7 @@ void LaunchState::button_action_exit()
 void LaunchState::button_action_start()
 {
     // this->QuitState();
-    this->_states->push(new GameState(this->_target, this->_font, this->_states));
+    this->_states->push_back(new GameState(this->_target, this->_font, this->_states));
 }
 
 // function
