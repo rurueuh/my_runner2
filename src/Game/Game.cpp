@@ -9,14 +9,14 @@
 
 void Game::initWindow()
 {
-    this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), TITLE, sf::Style::Fullscreen);
+    this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), TITLE);
     this->_window->setFramerateLimit(144);
 }
 
 void Game::initStates()
 {
     this->_states = std::make_shared<std::vector<State *>>();
-    this->_states.get()->push_back(new LaunchState(this->_window, this->_font, _states));
+    this->_states.get()->push_back(new LaunchState(this->_window, this->_font, &_states));
 }
 
 Game::Game()
@@ -57,8 +57,8 @@ static std::shared_ptr<std::vector<State *>> removeState(std::shared_ptr<std::ve
             tmp->push_back(*it);
     }
     delete state;
-    states = std::shared_ptr<std::vector<State *>>(tmp);
-    return states;
+    states = std::make_shared<std::vector<State *>>(*tmp);
+    return std::shared_ptr<std::vector<State *>>(tmp);
 }
 
 void Game::update()
@@ -68,6 +68,8 @@ void Game::update()
     if (!this->_states.get()->empty()){
         this->_states.get()->back()->update(this->_deltaTime, this->_window);
         for (auto &state : *this->_states.get()) {
+            if (state == nullptr)
+                continue;
             if (state->getQuit()) {
                 removeState(this->_states, state);
                 sf::sleep(sf::milliseconds(400));
