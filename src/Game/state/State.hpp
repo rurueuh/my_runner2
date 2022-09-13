@@ -11,7 +11,7 @@
 
 class State {
     public:
-        State(sf::RenderWindow *, sf::Font *, std::shared_ptr<std::stack<State *>> );
+        State(sf::RenderWindow *, sf::Font *, std::shared_ptr<std::vector<State *>> *);
         virtual ~State();
 
         virtual void update(const float &dt, sf::RenderTarget *) = 0;
@@ -24,7 +24,7 @@ class State {
 
         sf::RenderWindow *_target;
         sf::Font *_font;
-        std::shared_ptr<std::stack<State *>>  _states;
+        std::shared_ptr<std::vector<State *>> *_states;
     protected:
     private:
 

@@ -11,10 +11,11 @@
 #include "State.hpp"
 #include "Player.hpp"
 #include "Map.hpp"
+#include "DeadState.hpp"
 
 class GameState : public State {
     public:
-        GameState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::stack<State *>>  states);
+        GameState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<std::vector<State *>> *states);
         virtual ~GameState();
 
         void update(const float &dt, sf::RenderTarget *target);
