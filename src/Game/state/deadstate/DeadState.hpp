@@ -12,20 +12,20 @@
 
 class DeadState : public State {
     public:
-        DeadState(sf::RenderWindow *, sf::Font *, std::shared_ptr<std::vector<State *>> );
+        DeadState(sf::RenderWindow *, sf::Font *, std::shared_ptr<std::vector<State *>> *);
         virtual ~DeadState();
 
         void update(const float &dt, sf::RenderTarget *target);
         void render(sf::RenderTarget * = nullptr);
         void onWindowResize(sf::RenderTarget *target) {};
 
-        // void button_action_exit();
-        // void button_action_start();
+        void buttonToMenu();
+        void buttonRestart();
 
         void checkQuit();
     protected:
     private:
         Text *_text;
-        // std::pair<Button *, void (LaunchState::*)()> _button;
-        // std::pair<Button *, void (LaunchState::*)()> _button_start;
+        std::pair<Button *, void (DeadState::*)()> _button_to_menu;
+        std::pair<Button *, void (DeadState::*)()> _button_restart;
 };
