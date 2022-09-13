@@ -10,7 +10,7 @@
 Map::Map()
 {
     _texture.loadFromFile(_texturePath);
-    for (int i = 0; i < 30; i++) {
+    for (int i = 30; i >= 0; i--) {
         std::vector<sf::Sprite> tmp;
         for (int j = 0; j < 1; j++) {
             sf::Sprite sprite;
@@ -46,7 +46,7 @@ int Map::getBlockLengthMostFar()
     int length = 0;
     float max_x = 0;
     for (auto &row : _sprites) {
-        if (row.size() == 0){
+        if (row.size() == 0) {
             continue;
         }
         if (row.at(0).getPosition().x > max_x)
@@ -55,31 +55,38 @@ int Map::getBlockLengthMostFar()
     return length;
 }
 
+std::vector<sf::Sprite> Map::getLastRow()
+{
+    return _sprites[0];
+}
+
+std::vector<sf::Sprite> Map::getFirstRow()
+{
+    return _sprites[_sprites.size() - 1];
+}
+
 void Map::move(const float &dt, sf::RenderWindow *window)
 {
     for (auto &row : _sprites) {
-        if (row.size() > 0) {
-            if (row[0].getPosition().x + row[0].getGlobalBounds().width < 0) {
-                row.clear();
-                std::vector<sf::Sprite> tmp;
-                int rand = std::rand() % 3 + 1;
-                int max = getBlockLengthMostFar();
-                if (rand > max)
-                    rand = max + 1;
-                for (int j = 0; j < rand; j++) {
-                    sf::Sprite sprite;
-                    sprite.setTexture(_texture);
-                    sprite.setTextureRect(_spriteRect);
-                    sprite.setScale(1.025641025641026, 1);
-                    sprite.setPosition(window->getSize().x, window->getSize().y - (j + 1) * _spriteRect.height);
-                    tmp.push_back(sprite);
-                }
-                row = tmp;
-            }
-        }
         for (auto &sprite : row) {
             sprite.move(-moveSpeed * dt, 0);
         }
+    }
+    auto Lrow = getLastRow();
+    auto Frow = getFirstRow();
+    if (Frow.at(0).getPosition().x < 0) {
+        _sprites.erase(_sprites.begin() + _sprites.size() - 1);
+        int rand = std::rand() % 3 + 2;
+        std::vector<sf::Sprite> tmp;
+        for (int i = 0; i < rand; i++) {
+            sf::Sprite sprite;
+            sprite.setTexture(_texture);
+            sprite.setTextureRect(_spriteRect);
+            sprite.setScale(1.025641025641026, 1);
+            sprite.setPosition(Lrow.at(0).getPosition().x + _spriteRect.width, 1080 - _spriteRect.height * i);
+            tmp.push_back(sprite);
+        }
+        _sprites.insert(_sprites.begin(), tmp);
     }
 }
 

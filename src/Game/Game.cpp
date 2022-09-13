@@ -9,7 +9,7 @@
 
 void Game::initWindow()
 {
-    this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), TITLE);
+    this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), TITLE, sf::Style::Fullscreen);
     this->_window->setFramerateLimit(144);
 }
 
