@@ -9,6 +9,7 @@
 
 #include "SFML.hpp"
 #include "State.hpp"
+#include "Bestscore.hpp"
 
 class DeadState : public State {
     public:
@@ -25,6 +26,8 @@ class DeadState : public State {
         void checkQuit();
     protected:
     private:
+        Bestscore *_score;
+
         Text *_text;
         std::pair<Button *, void (DeadState::*)()> _button_to_menu;
         std::pair<Button *, void (DeadState::*)()> _button_restart;
