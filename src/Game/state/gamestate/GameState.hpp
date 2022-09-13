@@ -13,6 +13,7 @@
 #include "Map.hpp"
 #include "DeadState.hpp"
 #include "Paralax.hpp"
+#include "Score.hpp"
 
 class GameState : public State {
     public:
@@ -29,4 +30,5 @@ class GameState : public State {
         Player *_player;
         Map *_map;
         Paralax *_paralax;
+        Score *_score;
 };

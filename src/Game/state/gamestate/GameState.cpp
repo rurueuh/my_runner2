@@ -12,6 +12,7 @@ GameState::GameState(sf::RenderWindow *target, sf::Font *font, std::shared_ptr<s
     _map = new Map();
     _player = new Player(_map);
     _paralax = new Paralax(target->getSize());
+    _score = new Score(font);
 }
 
 GameState::~GameState()
@@ -20,6 +21,7 @@ GameState::~GameState()
     delete _player;
     delete _map;
     delete _paralax;
+    delete _score;
 }
 
 void GameState::checkQuit()
@@ -43,6 +45,7 @@ void GameState::update(const float &dt, sf::RenderTarget *target)
 
     _map->update(dt, dynamic_cast<sf::RenderWindow *>(target));
     _paralax->update(dt, target->getSize());
+    _score->update();
 }
 
 void GameState::onWindowResize(sf::RenderTarget *target)
@@ -54,5 +57,6 @@ void GameState::render(sf::RenderTarget *target)
     _paralax->render(target);
     _map->render(target);
     _player->render(target);
+    _score->render(target);
 }
 
