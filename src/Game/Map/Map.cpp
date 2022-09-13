@@ -41,6 +41,20 @@ float Map::getMaxHeight(sf::Vector2f &posPlayer, sf::RenderWindow *window) const
     return window->getSize().y;
 }
 
+int Map::getBlockLengthMostFar()
+{
+    int length = 0;
+    float max_x = 0;
+    for (auto &row : _sprites) {
+        if (row.size() == 0){
+            continue;
+        }
+        if (row.at(0).getPosition().x > max_x)
+            length = row.size();
+    }
+    return length;
+}
+
 void Map::move(const float &dt, sf::RenderWindow *window)
 {
     for (auto &row : _sprites) {
@@ -49,6 +63,9 @@ void Map::move(const float &dt, sf::RenderWindow *window)
                 row.clear();
                 std::vector<sf::Sprite> tmp;
                 int rand = std::rand() % 3 + 1;
+                int max = getBlockLengthMostFar();
+                if (rand > max)
+                    rand = max + 1;
                 for (int j = 0; j < rand; j++) {
                     sf::Sprite sprite;
                     sprite.setTexture(_texture);

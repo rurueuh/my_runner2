@@ -17,6 +17,13 @@ Gravity::~Gravity()
 {
 }
 
+bool Gravity::isInBlock(int height1, int height2, sf::Sprite &sprite)
+{
+    if (sprite.getPosition().y + sprite.getGlobalBounds().height > height1 + 30 || sprite.getPosition().y + sprite.getGlobalBounds().height > height2 + 30)
+        return true;
+    return false;
+}
+
 void Gravity::update(const float &dt, int height1, int height2)
 {
     if (this->_sprite->getPosition().y < height1 - this->_sprite->getGlobalBounds().height

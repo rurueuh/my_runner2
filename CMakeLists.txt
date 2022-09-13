@@ -21,16 +21,20 @@ file(GLOB_RECURSE rb_rpdb_src "src/")
 message(STATUS "headers: ${rb_rpdb_src} ")
 
 include_directories("./SFML/include")
-include_directories("./src/lib/")
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_LIB_DIR "./SFML/lib")
 
-set(SFML_STATIC_LIBRARIES TRUE)
-link_directories(${SFML_LIB_DIR})
+IF (WIN32)
+    set(SFML_STATIC_LIBRARIES TRUE)
+    link_directories(${SFML_LIB_DIR})
+ENDIF()
 
 add_executable(game ${helloworld_SRC})
-target_link_libraries(game sfml-graphics sfml-window sfml-system sfml-network sfml-audio opengl32 winmm gdi32)
-
+if (WIN32)
+    target_link_libraries(game sfml-graphics sfml-window sfml-system sfml-network sfml-audio opengl32 winmm gdi32)
+else ()
+    target_link_libraries(game sfml-graphics sfml-window sfml-system sfml-network sfml-audio)
+endif ()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
