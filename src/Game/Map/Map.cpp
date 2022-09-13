@@ -74,7 +74,7 @@ void Map::move(const float &dt, sf::RenderWindow *window)
     }
     auto Lrow = getLastRow();
     auto Frow = getFirstRow();
-    if (Frow.at(0).getPosition().x < 0) {
+    if (Frow.at(0).getPosition().x + Frow.at(0).getGlobalBounds().width < 0) {
         _sprites.erase(_sprites.begin() + _sprites.size() - 1);
         int rand = std::rand() % 3 + 2;
         std::vector<sf::Sprite> tmp;
